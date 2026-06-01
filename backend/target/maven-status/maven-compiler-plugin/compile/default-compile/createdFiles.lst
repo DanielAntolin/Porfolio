@@ -1,0 +1,13 @@
+com\danielantolin\portfolio\dto\SocialLinkDto.class
+com\danielantolin\portfolio\dto\ContactDto.class
+com\danielantolin\portfolio\controller\PortfolioController.class
+com\danielantolin\portfolio\dto\ProfileDto.class
+com\danielantolin\portfolio\dto\SkillGroupDto.class
+com\danielantolin\portfolio\PortfolioApplication.class
+com\danielantolin\portfolio\dto\ProjectDto.class
+com\danielantolin\portfolio\config\CorsConfig.class
+com\danielantolin\portfolio\dto\EducationDto.class
+com\danielantolin\portfolio\service\PortfolioService.class
+com\danielantolin\portfolio\dto\LanguageDto.class
+com\danielantolin\portfolio\dto\PortfolioDto.class
+com\danielantolin\portfolio\dto\ExperienceDto.class
