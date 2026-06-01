@@ -1,0 +1,26 @@
+<section class="panel panel-dark" id="education">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~/learning</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">cat education.log</span>
+  </div>
+
+  <div class="section-heading">
+    <p>/ education</p>
+    <h2>Formación en curso y especialización reciente</h2>
+  </div>
+
+  <div class="education-grid">
+    @for (item of education(); track item.institution) {
+      <article class="education-card">
+        <p class="status">{{ item.status }}</p>
+        <h3>{{ item.program }}</h3>
+        <p class="institution">{{ item.institution }}</p>
+        <p class="period">{{ item.period }}</p>
+        <p class="description">{{ item.description }}</p>
+      </article>
+    }
+  </div>
+</section>

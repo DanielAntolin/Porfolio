@@ -1,0 +1,73 @@
+@if (portfolio(); as data) {
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">*</span>
+        <div>
+          <span>{{ data.profile.fullName }}</span>
+        </div>
+      </div>
+
+      <nav class="terminal-nav">
+        @for (section of sections; track section.id) {
+          <a [href]="'#' + section.id">{{ section.label }}</a>
+        }
+      </nav>
+    </header>
+
+    <section class="intro">
+      <div class="intro-copy">
+        <p class="cli-label">boot sequence</p>
+        <h1>Una interfaz editorial con núcleo de terminal para mostrar experiencia real.</h1>
+        <p>
+          El contenido se sirve desde Spring Boot y se renderiza con Angular usando una estética
+          inspirada en CLI moderna: tonos cálidos, superficies oscuras, tipografía monoespaciada y
+          secciones presentadas como comandos.
+        </p>
+      </div>
+
+      <div class="intro-side">
+        <figure class="photo-terminal">
+          <div class="window-header window-header-terminal">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <img alt="Foto de Daniel Antolín" src="/profile-photo.jpg" />
+        </figure>
+
+        <div class="intro-console">
+          <div class="window-header window-header-terminal">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <pre class="typing">> fetch('/api/portfolio')
+> render --theme="warm-terminal"
+> status: online</pre>
+        </div>
+      </div>
+    </section>
+
+    <app-profile [profile]="data.profile" />
+    <app-experience [experience]="data.experience" />
+    <app-education [education]="data.education" />
+    <app-skills [skills]="data.skills" />
+    <app-projects [projects]="data.projects" />
+    <app-languages [languages]="data.languages" />
+    <app-contact [contact]="data.contact" />
+  </main>
+} @else {
+  <main class="shell">
+    <section class="loading panel-dark">
+      <div class="prompt-line">
+        <span class="prompt-user">system</span>
+        <span class="prompt-separator">:</span>
+        <span class="prompt-path">~/api</span>
+        <span class="prompt-dollar">$</span>
+        <span class="prompt-command">curl /api/portfolio</span>
+      </div>
+      <p>Cargando portfolio o esperando al backend en `http://localhost:8080`.</p>
+    </section>
+  </main>
+}

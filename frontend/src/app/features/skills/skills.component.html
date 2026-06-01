@@ -1,0 +1,27 @@
+<section class="panel" id="skills">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~/stack</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">grep -R "skills" ./</span>
+  </div>
+
+  <div class="section-heading">
+    <p>/ skills</p>
+    <h2>Stack técnico y áreas de especialización</h2>
+  </div>
+
+  <div class="skills-grid">
+    @for (group of skills(); track group.category) {
+      <article class="skill-card">
+        <h3>{{ group.category }}</h3>
+        <div class="tags">
+          @for (item of group.items; track item) {
+            <span>{{ item }}</span>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

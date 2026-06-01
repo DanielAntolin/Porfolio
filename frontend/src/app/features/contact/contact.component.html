@@ -1,0 +1,42 @@
+<section class="panel panel-dark" id="contact">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~/contact</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">curl /api/contact</span>
+  </div>
+
+  <div class="section-heading">
+    <p>/ contact</p>
+    <h2>Canales de contacto</h2>
+  </div>
+
+  <div class="contact-grid">
+    <article>
+      <span>email</span>
+      <a [href]="'mailto:' + contact().email">{{ contact().email }}</a>
+    </article>
+    <article>
+      <span>phone</span>
+      <a [href]="'tel:' + contact().phone">{{ contact().phone }}</a>
+    </article>
+    <article>
+      <span>location</span>
+      <p>{{ contact().location }}</p>
+    </article>
+  </div>
+
+  <div class="social-grid">
+    @for (link of contact().socialLinks; track link.label) {
+      <article class="social-card">
+        <span>{{ link.label }}</span>
+        @if (link.url) {
+          <a [href]="link.url" rel="noreferrer" target="_blank">{{ link.username }}</a>
+        } @else {
+          <p>{{ link.username }}</p>
+        }
+      </article>
+    }
+  </div>
+</section>

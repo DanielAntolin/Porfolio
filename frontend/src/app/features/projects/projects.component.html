@@ -1,0 +1,46 @@
+<section class="panel panel-muted" id="projects">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~/projects</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">find github://DanielAntolin -maxdepth 1</span>
+  </div>
+
+  <div class="section-heading">
+    <p>/ projects</p>
+    <h2>Repositorios públicos convertidos en tarjetas</h2>
+  </div>
+
+  @if (projects().length) {
+    <div class="projects-grid">
+      @for (project of projects(); track project.name) {
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-language">{{ project.primaryLanguage }}</span>
+            <span class="project-stars">★ {{ project.stars }}</span>
+          </div>
+
+          <h3>{{ project.name }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          <p class="project-period">{{ project.period }}</p>
+
+          <div class="project-tags">
+            @for (tech of project.technologies; track tech) {
+              <span>{{ tech }}</span>
+            }
+          </div>
+
+          @if (project.url) {
+            <a [href]="project.url" rel="noreferrer" target="_blank">open repository</a>
+          }
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <p>No hay proyectos concretos documentados en el CV actual.</p>
+      <span>TODO: añadir proyectos cuando exista una fuente verificable.</span>
+    </div>
+  }
+</section>

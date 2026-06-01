@@ -1,0 +1,40 @@
+<section class="panel" id="profile">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">cat profile.json</span>
+  </div>
+
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">/ profile</p>
+      <h1>{{ profile().fullName }}</h1>
+      <h2>{{ profile().title }}</h2>
+      <p class="summary">{{ profile().summary }}</p>
+    </div>
+
+    <div class="code-window json-window">
+      <div class="window-header window-header-terminal">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <pre><span class="json-punctuation">{{ '{' }}</span>
+  <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-value">"{{ profile().fullName }}"</span><span class="json-punctuation">,</span>
+  <span class="json-key">"role"</span><span class="json-punctuation">:</span> <span class="json-value">"{{ profile().title }}"</span><span class="json-punctuation">,</span>
+  <span class="json-key">"focus"</span><span class="json-punctuation">:</span> <span class="json-value">"{{ profile().focusAreas[0] }}"</span>
+<span class="json-punctuation">{{ '}' }}</span></pre>
+    </div>
+  </div>
+
+  <div class="focus-grid">
+    @for (focus of profile().focusAreas; track focus) {
+      <article class="focus-card">
+        <span class="focus-label">grep -i focus</span>
+        <p>{{ focus }}</p>
+      </article>
+    }
+  </div>
+</section>

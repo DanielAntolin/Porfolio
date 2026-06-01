@@ -1,0 +1,27 @@
+<section class="panel" id="languages">
+  <div class="prompt-line">
+    <span class="prompt-user">daniel@portfolio</span>
+    <span class="prompt-separator">:</span>
+    <span class="prompt-path">~/languages</span>
+    <span class="prompt-dollar">$</span>
+    <span class="prompt-command">cat languages.yml</span>
+  </div>
+
+  <div class="section-heading">
+    <p>/ languages</p>
+    <h2>Idiomas</h2>
+  </div>
+
+  @if (languages().length) {
+    <ul class="language-list">
+      @for (language of languages(); track language.name) {
+        <li>{{ language.name }} · {{ language.level }}</li>
+      }
+    </ul>
+  } @else {
+    <div class="empty-state">
+      <p>El CV actual no especifica idiomas.</p>
+      <span>Se mantiene vacío para no inferir información no documentada.</span>
+    </div>
+  }
+</section>
