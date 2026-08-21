@@ -21,8 +21,8 @@ public class PortfolioService {
                 "Daniel Antolín",
                 "Ingeniero de Software",
                 "Profesional orientado a resultados, especializado en sistemas embebidos y software industrial. "
-                        + "Combina disciplina, trabajo en equipo y vision estrategica para disenar soluciones robustas "
-                        + "que conectan hardware critico con experiencias de usuario intuitivas y multiplataforma.",
+                        + "Combina disciplina, trabajo en equipo y visión estratégica para diseñar soluciones robustas "
+                        + "que conectan hardware crítico con experiencias de usuario intuitivas y multiplataforma.",
                 List.of(
                         "Sistemas embebidos y control industrial",
                         "Aplicaciones multiplataforma",
@@ -40,21 +40,21 @@ public class PortfolioService {
                         "2024 - Actualmente",
                         "Full-time",
                         List.of(
-                                "Diseno y despliegue end-to-end de soluciones para sistemas criticos de pesaje y etiquetado industrial.",
-                                "Optimizacion de software para sistemas de bajos recursos mediante C++ y ensamblador para procesamiento en tiempo real.",
-                                "Implementacion de logica de control con Lua y Yabasic para personalizacion de perifericos industriales."
+                                "Diseño y despliegue end-to-end de soluciones para sistemas críticos de pesaje y etiquetado industrial.",
+                                "Optimización de software para sistemas de bajos recursos mediante C++ y ensamblador para procesamiento en tiempo real.",
+                                "Implementación de lógica de control con Lua y Yabasic para personalización de periféricos industriales."
                         ),
                         List.of("C++", "Ensamblador", "Lua", "Yabasic", "RTOS", "bare-metal")
                 ),
                 new ExperienceDto(
                         "Escribano Mechanical & Engineering",
-                        "Practicas, Ingeniero en Sistemas Embebidos",
+                        "Prácticas, Ingeniero en Sistemas Embebidos",
                         "2023 - 2024",
                         "Internship",
                         List.of(
-                                "Desarrollo de logica de negocio en C++11 aplicando patrones de diseno para mantener el codigo escalable y mantenible."
+                                "Desarrollo de lógica de negocio en C++11 aplicando patrones de diseño para mantener el código escalable y mantenible."
                         ),
-                        List.of("C++11", "Patrones de diseno", "Sistemas embebidos")
+                        List.of("C++11", "Patrones de diseño", "Sistemas embebidos")
                 )
         );
     }
@@ -63,17 +63,17 @@ public class PortfolioService {
         return List.of(
                 new EducationDto(
                         "Universidad Internacional de La Rioja",
-                        "Ingenieria Informatica",
+                        "Ingeniería Informática",
                         "Actualidad",
                         "En curso",
-                        "Formacion universitaria actual en informatica."
+                        "Formación universitaria actual en informática."
                 ),
                 new EducationDto(
-                        "Universidad de Alcala de Henares",
+                        "Universidad de Alcalá de Henares",
                         "Credencial Universitaria Especialista en Software en C++",
                         "2023 - 2024",
                         "Completado",
-                        "Especializacion centrada en software en C++."
+                        "Especialización centrada en software en C++."
                 )
         );
     }
@@ -86,11 +86,11 @@ public class PortfolioService {
                 ),
                 new SkillGroupDto(
                         "Arquitectura & Producto",
-                        List.of("Control industrial", "Pesaje y etiquetado", "Soluciones end-to-end", "Diseno mantenible")
+                        List.of("Control industrial", "Pesaje y etiquetado", "Soluciones end-to-end", "Diseño mantenible")
                 ),
                 new SkillGroupDto(
                         "Multiplataforma",
-                        List.of(".NET MAUI", "Interoperabilidad hardware-usuario", "Monitorizacion de dispositivos")
+                        List.of(".NET MAUI", "Interoperabilidad hardware-usuario", "Monitorización de dispositivos")
                 )
         );
     }
@@ -99,7 +99,7 @@ public class PortfolioService {
         return List.of(
                 new ProjectDto(
                         "StripePaymentGateway",
-                        "Backend Java para una plataforma de negocio con creacion de productos, checkout seguro con Stripe y documentacion via Swagger.",
+                        "Backend Java para una plataforma de negocio con creación de productos, checkout seguro con Stripe y documentación vía Swagger.",
                         "Actualizado el 28 de noviembre de 2024",
                         List.of("Java", "Stripe", "Swagger UI", "Webhooks", "REST API"),
                         "https://github.com/DanielAntolin/StripePaymentGateway",
@@ -117,7 +117,7 @@ public class PortfolioService {
                 ),
                 new ProjectDto(
                         "DanielAntolin",
-                        "Repositorio de perfil con presentacion tecnica, stack principal y foco en APIs REST, Android, .NET MAUI y software orientado al rendimiento.",
+                        "Repositorio de perfil con presentación técnica, stack principal y foco en APIs REST, Android, .NET MAUI y software orientado al rendimiento.",
                         "Actualizado el 10 de abril de 2026",
                         List.of("Markdown", "Java", "Python", ".NET MAUI", "C++", "Assembly"),
                         "https://github.com/DanielAntolin/DanielAntolin",
@@ -128,14 +128,14 @@ public class PortfolioService {
     }
 
     public List<LanguageDto> getLanguages() {
-        return List.of(new LanguageDto("Ingles", "B2"));
+        return List.of(new LanguageDto("Inglés", "B2"));
     }
 
     public ContactDto getContact() {
         return new ContactDto(
                 "trabajosdanidar12@gmail.com",
                 "+34 660 236 766",
-                "Guadalajara, Espana",
+                "Guadalajara, España",
                 List.of(
                         new SocialLinkDto("GitHub", "https://github.com/DanielAntolin", "DanielAntolin"),
                         new SocialLinkDto(
@@ -194,7 +194,7 @@ public class PortfolioService {
         if (!isEnglish(language)) return getEducation();
         return List.of(
                 new EducationDto("Universidad Internacional de La Rioja", "Computer Engineering", "Present", "In progress", "Current university education in computer science."),
-                new EducationDto("Universidad de Alcala de Henares", "University Specialist Credential in C++ Software", "2023 - 2024", "Completed", "Specialisation focused on C++ software.")
+                new EducationDto("Universidad de Alcalá de Henares", "University Specialist Credential in C++ Software", "2023 - 2024", "Completed", "Specialisation focused on C++ software.")
         );
     }
 
