@@ -10,4 +10,5 @@ import { Project } from '../../core/models/portfolio.models';
 })
 export class ProjectsComponent {
   readonly projects = input.required<Project[]>();
+  readonly language = input.required<'es' | 'en'>();
 }

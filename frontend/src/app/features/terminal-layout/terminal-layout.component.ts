@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of, switchMap } from 'rxjs';
 
 import { PortfolioService } from '../../core/services/portfolio.service';
 import { ContactComponent } from '../contact/contact.component';
@@ -29,18 +29,17 @@ import { SkillsComponent } from '../skills/skills.component';
 export class TerminalLayoutComponent {
   private readonly portfolioService = inject(PortfolioService);
 
+  readonly language = signal<'es' | 'en'>('es');
   readonly portfolio = toSignal(
-    this.portfolioService.getPortfolio().pipe(catchError(() => of(null))),
+    toObservable(this.language).pipe(
+      switchMap((language) => this.portfolioService.getPortfolio(language).pipe(catchError(() => of(null))))
+    ),
     { initialValue: null }
   );
 
-  readonly sections = [
-    { id: 'profile', label: 'profile' },
-    { id: 'experience', label: 'experience' },
-    { id: 'education', label: 'education' },
-    { id: 'skills', label: 'skills' },
-    { id: 'projects', label: 'projects' },
-    { id: 'languages', label: 'languages' },
-    { id: 'contact', label: 'contact' }
-  ];
+  readonly sections = ['profile', 'experience', 'education', 'skills', 'projects', 'languages', 'contact'];
+
+  setLanguage(language: 'es' | 'en'): void {
+    this.language.set(language);
+  }
 }

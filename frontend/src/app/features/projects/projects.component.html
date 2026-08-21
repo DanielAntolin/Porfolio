@@ -9,7 +9,7 @@
 
   <div class="section-heading">
     <p>/ projects</p>
-    <h2>Repositorios públicos convertidos en tarjetas</h2>
+    <h2>{{ language() === 'es' ? 'Repositorios públicos convertidos en tarjetas' : 'Public repositories presented as cards' }}</h2>
   </div>
 
   @if (projects().length) {
@@ -32,7 +32,7 @@
           </div>
 
           @if (project.url) {
-            <a [href]="project.url" rel="noreferrer" target="_blank">open repository</a>
+            <a [href]="project.url" rel="noreferrer" target="_blank">{{ language() === 'es' ? 'abrir repositorio' : 'open repository' }}</a>
           }
         </article>
       }

@@ -8,7 +8,7 @@ import { Portfolio } from '../models/portfolio.models';
 export class PortfolioService {
   private readonly http = inject(HttpClient);
 
-  getPortfolio(): Observable<Portfolio> {
-    return this.http.get<Portfolio>('/api/portfolio');
+  getPortfolio(language: 'es' | 'en' = 'es'): Observable<Portfolio> {
+    return this.http.get<Portfolio>('/api/portfolio', { params: { lang: language } });
   }
 }

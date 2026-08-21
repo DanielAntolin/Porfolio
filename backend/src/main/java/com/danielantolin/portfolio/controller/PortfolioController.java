@@ -11,6 +11,7 @@ import com.danielantolin.portfolio.dto.SkillGroupDto;
 import com.danielantolin.portfolio.service.PortfolioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,42 +27,42 @@ public class PortfolioController {
     }
 
     @GetMapping("/profile")
-    public ProfileDto getProfile() {
-        return portfolioService.getProfile();
+    public ProfileDto getProfile(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getProfile(lang);
     }
 
     @GetMapping("/experience")
-    public List<ExperienceDto> getExperience() {
-        return portfolioService.getExperience();
+    public List<ExperienceDto> getExperience(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getExperience(lang);
     }
 
     @GetMapping("/education")
-    public List<EducationDto> getEducation() {
-        return portfolioService.getEducation();
+    public List<EducationDto> getEducation(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getEducation(lang);
     }
 
     @GetMapping("/skills")
-    public List<SkillGroupDto> getSkills() {
-        return portfolioService.getSkills();
+    public List<SkillGroupDto> getSkills(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getSkills(lang);
     }
 
     @GetMapping("/projects")
-    public List<ProjectDto> getProjects() {
-        return portfolioService.getProjects();
+    public List<ProjectDto> getProjects(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getProjects(lang);
     }
 
     @GetMapping("/languages")
-    public List<LanguageDto> getLanguages() {
-        return portfolioService.getLanguages();
+    public List<LanguageDto> getLanguages(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getLanguages(lang);
     }
 
     @GetMapping("/contact")
-    public ContactDto getContact() {
-        return portfolioService.getContact();
+    public ContactDto getContact(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getContact(lang);
     }
 
     @GetMapping("/portfolio")
-    public PortfolioDto getPortfolio() {
-        return portfolioService.getPortfolio();
+    public PortfolioDto getPortfolio(@RequestParam(defaultValue = "es") String lang) {
+        return portfolioService.getPortfolio(lang);
     }
 }

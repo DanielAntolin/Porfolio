@@ -10,4 +10,5 @@ import { Profile } from '../../core/models/portfolio.models';
 })
 export class ProfileComponent {
   readonly profile = input.required<Profile>();
+  readonly language = input.required<'es' | 'en'>();
 }

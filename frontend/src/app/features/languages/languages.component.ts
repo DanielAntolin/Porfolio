@@ -10,4 +10,5 @@ import { Language } from '../../core/models/portfolio.models';
 })
 export class LanguagesComponent {
   readonly languages = input.required<Language[]>();
+  readonly language = input.required<'es' | 'en'>();
 }
