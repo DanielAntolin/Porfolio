@@ -64,12 +64,3 @@ npm start
 
 URL principal:
 - Web: `http://localhost:4200`
-
-Notas:
-- El script `npm start` usa `proxy.conf.json` para redirigir `/api` al backend en desarrollo.
-- El backend también expone CORS para `http://localhost:4200`.
-
-## Observaciones de contenido
-
-- No se han inventado proyectos ni idiomas porque no aparecen de forma explícita en el CV.
-- El perfil de LinkedIn se mantiene sin URL hasta que se confirme la dirección exacta.
