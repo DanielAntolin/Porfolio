@@ -10,4 +10,5 @@ import { Experience } from '../../core/models/portfolio.models';
 })
 export class ExperienceComponent {
   readonly experience = input.required<Experience[]>();
+  readonly language = input.required<'es' | 'en'>();
 }

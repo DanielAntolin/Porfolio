@@ -91,6 +91,7 @@
 
 .intro-copy,
 .intro-console,
+.name-terminal,
 .photo-terminal {
   border-radius: var(--radius-xl);
   padding: 2rem;
@@ -133,6 +134,7 @@
 }
 
 .intro-console,
+.name-terminal,
 .photo-terminal {
   background: linear-gradient(180deg, rgba(24, 23, 21, 0.98), rgba(31, 30, 27, 0.98));
   border: 1px solid rgba(250, 249, 245, 0.08);
@@ -146,12 +148,21 @@
 }
 
 .intro-console::after,
+.name-terminal::after,
 .photo-terminal::after {
   background: linear-gradient(transparent 0, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
   content: '';
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+
+.name-terminal {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 180px;
+  padding: 1rem;
 }
 
 .photo-terminal {
@@ -164,6 +175,25 @@
   min-height: 320px;
   object-fit: cover;
   width: 100%;
+}
+
+.name-terminal p {
+  color: var(--color-on-dark);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.18);
+  z-index: 1;
+}
+
+.name-terminal .window-header-terminal {
+  left: 1rem;
+  margin: 0;
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
 }
 
 .window-header-terminal {
@@ -195,6 +225,36 @@
 
 .loading {
   margin-top: 4rem;
+}
+
+.language-switcher {
+  background: var(--color-ink);
+  border: 1px solid rgba(250, 249, 245, 0.16);
+  border-radius: 999px;
+  bottom: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  gap: 0.2rem;
+  padding: 0.3rem;
+  position: fixed;
+  right: 1.5rem;
+  z-index: 30;
+}
+
+.language-switcher button {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--color-on-dark);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+}
+
+.language-switcher button.active {
+  background: var(--color-primary);
 }
 
 @keyframes fade-in {

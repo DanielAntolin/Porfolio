@@ -2,15 +2,12 @@
   <main class="shell">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-mark">*</span>
-        <div>
-          <span>{{ data.profile.fullName }}</span>
-        </div>
+        <span>{{ data.profile.fullName }}</span>
       </div>
 
       <nav class="terminal-nav">
-        @for (section of sections; track section.id) {
-          <a [href]="'#' + section.id">{{ section.label }}</a>
+        @for (section of sections; track section) {
+          <a [href]="'#' + section">{{ section }}</a>
         }
       </nav>
     </header>
@@ -18,12 +15,8 @@
     <section class="intro">
       <div class="intro-copy">
         <p class="cli-label">boot sequence</p>
-        <h1>Una interfaz editorial con núcleo de terminal para mostrar experiencia real.</h1>
-        <p>
-          El contenido se sirve desde Spring Boot y se renderiza con Angular usando una estética
-          inspirada en CLI moderna: tonos cálidos, superficies oscuras, tipografía monoespaciada y
-          secciones presentadas como comandos.
-        </p>
+        <h1>{{ language() === 'es' ? 'Una interfaz editorial con núcleo de terminal para mostrar experiencia real.' : 'An editorial interface with a terminal core for presenting real-world experience.' }}</h1>
+        <p>{{ language() === 'es' ? 'El contenido se sirve desde Spring Boot y se renderiza con Angular usando una estética inspirada en CLI moderna: tonos cálidos, superficies oscuras, tipografía monoespaciada y secciones presentadas como comandos. Este proyecto está totalmente autoalojado.' : 'Content is served by Spring Boot and rendered with Angular in a modern CLI-inspired aesthetic: warm tones, dark surfaces, monospace typography, and command-like sections. This project is fully self-hosted.' }}</p>
       </div>
 
       <div class="intro-side">
@@ -33,8 +26,17 @@
             <span></span>
             <span></span>
           </div>
-          <img alt="Foto de Daniel Antolín" src="/profile-photo.jpg" />
+          <img alt="Foto de Daniel Antolín" src="/profile-photo.jpg?locale=es" />
         </figure>
+
+        <div class="name-terminal">
+          <div class="window-header window-header-terminal">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <p>Daniel Antolín</p>
+        </div>
 
         <div class="intro-console">
           <div class="window-header window-header-terminal">
@@ -49,13 +51,17 @@
       </div>
     </section>
 
-    <app-profile [profile]="data.profile" />
-    <app-experience [experience]="data.experience" />
-    <app-education [education]="data.education" />
-    <app-skills [skills]="data.skills" />
-    <app-projects [projects]="data.projects" />
-    <app-languages [languages]="data.languages" />
-    <app-contact [contact]="data.contact" />
+    <app-profile [profile]="data.profile" [language]="language()" />
+    <app-experience [experience]="data.experience" [language]="language()" />
+    <app-education [education]="data.education" [language]="language()" />
+    <app-skills [skills]="data.skills" [language]="language()" />
+    <app-projects [projects]="data.projects" [language]="language()" />
+    <app-languages [languages]="data.languages" [language]="language()" />
+    <app-contact [contact]="data.contact" [language]="language()" />
+    <div class="language-switcher" aria-label="Language selector">
+      <button [class.active]="language() === 'es'" (click)="setLanguage('es')">ES</button>
+      <button [class.active]="language() === 'en'" (click)="setLanguage('en')">EN</button>
+    </div>
   </main>
 } @else {
   <main class="shell">

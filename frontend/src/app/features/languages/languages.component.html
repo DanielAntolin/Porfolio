@@ -9,7 +9,7 @@
 
   <div class="section-heading">
     <p>/ languages</p>
-    <h2>Idiomas</h2>
+    <h2>{{ language() === 'es' ? 'Idiomas' : 'Languages' }}</h2>
   </div>
 
   @if (languages().length) {
@@ -20,8 +20,8 @@
     </ul>
   } @else {
     <div class="empty-state">
-      <p>El CV actual no especifica idiomas.</p>
-      <span>Se mantiene vacío para no inferir información no documentada.</span>
+      <p>{{ language() === 'es' ? 'El CV actual no especifica idiomas.' : 'The current CV does not specify languages.' }}</p>
+      <span>{{ language() === 'es' ? 'Se mantiene vacío para no inferir información no documentada.' : 'It remains empty to avoid inferring undocumented information.' }}</span>
     </div>
   }
 </section>

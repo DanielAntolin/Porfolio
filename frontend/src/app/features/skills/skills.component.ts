@@ -10,4 +10,5 @@ import { SkillGroup } from '../../core/models/portfolio.models';
 })
 export class SkillsComponent {
   readonly skills = input.required<SkillGroup[]>();
+  readonly language = input.required<'es' | 'en'>();
 }

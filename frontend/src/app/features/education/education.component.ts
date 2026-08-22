@@ -10,4 +10,5 @@ import { Education } from '../../core/models/portfolio.models';
 })
 export class EducationComponent {
   readonly education = input.required<Education[]>();
+  readonly language = input.required<'es' | 'en'>();
 }

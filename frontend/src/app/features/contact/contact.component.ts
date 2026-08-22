@@ -10,4 +10,5 @@ import { Contact } from '../../core/models/portfolio.models';
 })
 export class ContactComponent {
   readonly contact = input.required<Contact>();
+  readonly language = input.required<'es' | 'en'>();
 }
