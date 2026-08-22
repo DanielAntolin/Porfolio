@@ -188,6 +188,14 @@
   z-index: 1;
 }
 
+.name-terminal .window-header-terminal {
+  left: 1rem;
+  margin: 0;
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+}
+
 .window-header-terminal {
   margin-bottom: 0.9rem;
 }
