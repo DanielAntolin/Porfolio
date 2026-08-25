@@ -1,6 +1,7 @@
 package com.danielantolin.portfolio.controller;
 
 import com.danielantolin.portfolio.dto.ContactDto;
+import com.danielantolin.portfolio.dto.ContactRequestDto;
 import com.danielantolin.portfolio.dto.EducationDto;
 import com.danielantolin.portfolio.dto.ExperienceDto;
 import com.danielantolin.portfolio.dto.LanguageDto;
@@ -9,10 +10,15 @@ import com.danielantolin.portfolio.dto.ProfileDto;
 import com.danielantolin.portfolio.dto.ProjectDto;
 import com.danielantolin.portfolio.dto.SkillGroupDto;
 import com.danielantolin.portfolio.service.PortfolioService;
+import com.danielantolin.portfolio.service.ContactEmailService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -21,9 +27,11 @@ import java.util.List;
 public class PortfolioController {
 
     private final PortfolioService portfolioService;
+    private final ContactEmailService contactEmailService;
 
-    public PortfolioController(PortfolioService portfolioService) {
+    public PortfolioController(PortfolioService portfolioService, ContactEmailService contactEmailService) {
         this.portfolioService = portfolioService;
+        this.contactEmailService = contactEmailService;
     }
 
     @GetMapping("/profile")
@@ -59,6 +67,15 @@ public class PortfolioController {
     @GetMapping("/contact")
     public ContactDto getContact(@RequestParam(defaultValue = "es") String lang) {
         return portfolioService.getContact(lang);
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<Void> sendContact(@Valid @RequestBody ContactRequestDto request) {
+        if (request.website() != null && !request.website().isBlank()) {
+            return ResponseEntity.noContent().build();
+        }
+        contactEmailService.send(request);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/portfolio")

@@ -133,9 +133,6 @@ public class PortfolioService {
 
     public ContactDto getContact() {
         return new ContactDto(
-                "trabajosdanidar12@gmail.com",
-                "+34 660 236 766",
-                "Guadalajara, España",
                 List.of(
                         new SocialLinkDto("GitHub", "https://github.com/DanielAntolin", "DanielAntolin"),
                         new SocialLinkDto(
@@ -223,9 +220,6 @@ public class PortfolioService {
     public ContactDto getContact(String language) {
         if (!isEnglish(language)) return getContact();
         return new ContactDto(
-                "trabajosdanidar12@gmail.com",
-                "+34 660 236 766",
-                "Guadalajara, Spain",
                 List.of(
                         new SocialLinkDto("GitHub", "https://github.com/DanielAntolin", "DanielAntolin"),
                         new SocialLinkDto("LinkedIn", "https://www.linkedin.com/in/dani-antol%C3%ADn-rosales-aa4414295?utm_source=share_via&utm_content=profile&utm_medium=member_android", "Daniel Antolin Rosales")

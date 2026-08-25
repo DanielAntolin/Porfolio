@@ -15,7 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
                         "https://danielantolin.com",
                         "https://www.danielantolin.com"
                 )
-                .allowedMethods("GET")
+                .allowedMethods("GET", "POST")
                 .allowedHeaders("*");
     }
 }

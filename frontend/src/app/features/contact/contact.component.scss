@@ -16,14 +16,12 @@
   margin: 0 0 2rem;
 }
 
-.contact-grid,
 .social-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.contact-grid article,
 .social-card {
   background: rgba(250, 249, 245, 0.03);
   border: 1px solid rgba(250, 249, 245, 0.08);
@@ -41,7 +39,7 @@ span {
 }
 
 a,
-p {
+.contact-intro {
   color: var(--color-on-dark);
   margin: 0;
   overflow-wrap: anywhere;
@@ -49,4 +47,85 @@ p {
 
 .social-grid {
   margin-top: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+label span {
+  margin: 0;
+}
+
+input,
+textarea {
+  background: rgba(250, 249, 245, 0.06);
+  border: 1px solid rgba(250, 249, 245, 0.16);
+  border-radius: var(--radius-md);
+  color: var(--color-on-dark);
+  font: inherit;
+  padding: 0.8rem 0.9rem;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid rgba(204, 120, 92, 0.25);
+  outline-offset: 2px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.message-field,
+.form-status {
+  grid-column: 1 / -1;
+}
+
+button {
+  background: var(--color-primary);
+  border: 0;
+  border-radius: var(--radius-md);
+  color: var(--color-on-primary);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  justify-self: start;
+  padding: 0.8rem 1.1rem;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form-status {
+  margin: 0;
+}
+
+.success {
+  color: #7ad99a;
+}
+
+.error {
+  color: #ff9c96;
+}
+
+.honeypot {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  form {
+    grid-template-columns: 1fr;
+  }
 }

@@ -4,38 +4,53 @@
     <span class="prompt-separator">:</span>
     <span class="prompt-path">~/contact</span>
     <span class="prompt-dollar">$</span>
-    <span class="prompt-command">curl /api/contact</span>
+    <span class="prompt-command">send-message --secure</span>
   </div>
 
   <div class="section-heading">
     <p>/ contact</p>
-    <h2>{{ language() === 'es' ? 'Canales de contacto' : 'Contact channels' }}</h2>
+    <h2>{{ language() === 'es' ? 'Hablemos' : 'Let’s talk' }}</h2>
+    <span class="contact-intro">{{ language() === 'es' ? 'Envía un mensaje y recibiré tu consulta directamente, sin publicar mis datos personales.' : 'Send a message and I will receive your enquiry directly, without publishing my personal contact details.' }}</span>
   </div>
 
-  <div class="contact-grid">
-    <article>
-      <span>email</span>
-      <a [href]="'mailto:' + contact().email">{{ contact().email }}</a>
-    </article>
-    <article>
-      <span>phone</span>
-      <a [href]="'tel:' + contact().phone">{{ contact().phone }}</a>
-    </article>
-    <article>
-      <span>location</span>
-      <p>{{ contact().location }}</p>
-    </article>
-  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <label>
+      <span>{{ language() === 'es' ? 'Nombre' : 'Name' }}</span>
+      <input formControlName="name" autocomplete="name" [placeholder]="language() === 'es' ? 'Tu nombre' : 'Your name'" />
+    </label>
+
+    <label>
+      <span>Email</span>
+      <input formControlName="email" type="email" autocomplete="email" [placeholder]="language() === 'es' ? 'tu@email.com' : 'you@email.com'" />
+    </label>
+
+    <label class="message-field">
+      <span>{{ language() === 'es' ? 'Mensaje' : 'Message' }}</span>
+      <textarea formControlName="message" rows="6" [placeholder]="language() === 'es' ? 'Cuéntame en qué puedo ayudarte.' : 'Tell me how I can help.'"></textarea>
+    </label>
+
+    <label class="honeypot" aria-hidden="true">
+      <span>Website</span>
+      <input formControlName="website" tabindex="-1" autocomplete="off" />
+    </label>
+
+    <button type="submit" [disabled]="sending()">
+      {{ sending() ? (language() === 'es' ? 'Enviando…' : 'Sending…') : (language() === 'es' ? 'Enviar mensaje' : 'Send message') }}
+    </button>
+
+    @if (sent()) {
+      <p class="form-status success">{{ language() === 'es' ? 'Mensaje enviado. Gracias por contactar.' : 'Message sent. Thank you for getting in touch.' }}</p>
+    }
+    @if (failed()) {
+      <p class="form-status error">{{ language() === 'es' ? 'No se pudo enviar el mensaje. Inténtalo de nuevo más tarde.' : 'The message could not be sent. Please try again later.' }}</p>
+    }
+  </form>
 
   <div class="social-grid">
     @for (link of contact().socialLinks; track link.label) {
       <article class="social-card">
         <span>{{ link.label }}</span>
-        @if (link.url) {
-          <a [href]="link.url" rel="noreferrer" target="_blank">{{ link.username }}</a>
-        } @else {
-          <p>{{ link.username }}</p>
-        }
+        <a [href]="link.url" rel="noreferrer" target="_blank">{{ link.username }}</a>
       </article>
     }
   </div>
