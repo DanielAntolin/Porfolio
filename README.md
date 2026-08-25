@@ -10,6 +10,7 @@ Portfolio personal full stack, bilingüe y autoalojado. La interfaz está constr
 - Contenido profesional en español e inglés.
 - API REST independiente con Spring Boot y Java 21.
 - Selector de idioma que actualiza datos, URL y metadatos SEO.
+- Formulario de contacto privado: envía mensajes por SMTP sin publicar correo, teléfono ni ubicación.
 - SEO técnico: canónica, `hreflang`, Open Graph, Twitter Cards, JSON-LD `Person`, `robots.txt` y sitemap.
 - Dos contenedores Docker compatibles con ARM64.
 - Despliegue autoalojado en Oracle Cloud mediante Coolify, Nginx, Traefik y HTTPS automático.
@@ -71,7 +72,7 @@ El backend usa una estructura MVC ligera:
 3. `PortfolioService` devuelve el contenido adecuado.
 4. Los `record` del directorio `dto` se serializan a JSON automáticamente.
 
-`CorsConfig` permite únicamente peticiones GET desde `localhost:4200`, `danielantolin.com` y `www.danielantolin.com`.
+`CorsConfig` permite únicamente peticiones GET y POST desde `localhost:4200`, `danielantolin.com` y `www.danielantolin.com`.
 
 ### Endpoints
 
@@ -86,6 +87,7 @@ El backend usa una estructura MVC ligera:
 | `GET /api/projects` | Repositorios y proyectos |
 | `GET /api/languages` | Idiomas |
 | `GET /api/contact` | Contacto y enlaces sociales |
+| `POST /api/contact` | Envía un mensaje del formulario al buzón privado configurado |
 
 Ejemplo:
 
@@ -106,6 +108,22 @@ Al cambiar de idioma:
 3. Se actualizan idioma del documento, título, descripción, Open Graph y URL canónica.
 
 La foto de perfil se sirve como recurso estático y es la misma en ambos idiomas.
+
+### Formulario de contacto
+
+La página solo expone enlaces de GitHub y LinkedIn. El formulario solicita nombre, correo y mensaje, con validación tanto en Angular como en Spring Boot y un campo oculto anti-spam. `ContactEmailService` envía el mensaje en texto plano mediante SMTP y usa el correo del visitante como `Reply-To`.
+
+La configuración se mantiene fuera del repositorio mediante variables de entorno de ejecución en Coolify:
+
+```text
+SMTP_HOST
+SMTP_PORT
+SMTP_USERNAME
+SMTP_PASSWORD
+CONTACT_RECIPIENT_EMAIL
+```
+
+Nunca incluir estas variables en Git, en `application.properties` ni en documentación pública.
 
 ## Desarrollo local
 
@@ -179,7 +197,8 @@ Después de un cambio relevante, se puede enviar el sitemap desde Google Search 
 ## Seguridad y mantenimiento
 
 - No incluir tokens, claves SSH, contraseñas ni certificados en el repositorio.
-- La API solo acepta métodos GET y orígenes web explícitamente autorizados.
+- La API solo acepta GET y POST desde orígenes web explícitamente autorizados.
+- Los datos personales no se devuelven desde la API pública; el correo SMTP reside solo como secreto de ejecución en Coolify.
 - Los puertos públicos necesarios son 80 y 443; no publicar el panel Coolify ni el puerto interno de Spring Boot.
 - Las copias de seguridad y los datos del servidor se documentan fuera de este repositorio.
 
