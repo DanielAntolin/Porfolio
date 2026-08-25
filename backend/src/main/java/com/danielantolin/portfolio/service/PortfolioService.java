@@ -74,6 +74,13 @@ public class PortfolioService {
                         "2023 - 2024",
                         "Completado",
                         "Especialización centrada en software en C++."
+                ),
+                new EducationDto(
+                        "IES Alonso de Avellaneda",
+                        "Grado Superior en Desarrollo de Aplicaciones Multiplataforma",
+                        "2022 - 2024",
+                        "Completado",
+                        "Formación superior centrada en el desarrollo de aplicaciones multiplataforma."
                 )
         );
     }
@@ -116,13 +123,13 @@ public class PortfolioService {
                         2
                 ),
                 new ProjectDto(
-                        "DanielAntolin",
-                        "Repositorio de perfil con presentación técnica, stack principal y foco en APIs REST, Android, .NET MAUI y software orientado al rendimiento.",
-                        "Actualizado el 10 de abril de 2026",
-                        List.of("Markdown", "Java", "Python", ".NET MAUI", "C++", "Assembly"),
-                        "https://github.com/DanielAntolin/DanielAntolin",
-                        "Markdown",
-                        2
+                        "Porfolio",
+                        "Portfolio personal full stack y autoalojado, construido con Angular y Spring Boot, con contenido bilingüe, formulario de contacto verificado y despliegue mediante Coolify.",
+                        "Actualizado el 25 de agosto de 2026",
+                        List.of("Angular", "TypeScript", "Spring Boot", "Java", "Docker", "Coolify"),
+                        "https://github.com/DanielAntolin/Porfolio",
+                        "TypeScript",
+                        0
                 )
         );
     }
@@ -133,9 +140,6 @@ public class PortfolioService {
 
     public ContactDto getContact() {
         return new ContactDto(
-                "trabajosdanidar12@gmail.com",
-                "+34 660 236 766",
-                "Guadalajara, España",
                 List.of(
                         new SocialLinkDto("GitHub", "https://github.com/DanielAntolin", "DanielAntolin"),
                         new SocialLinkDto(
@@ -194,7 +198,8 @@ public class PortfolioService {
         if (!isEnglish(language)) return getEducation();
         return List.of(
                 new EducationDto("Universidad Internacional de La Rioja", "Computer Engineering", "Present", "In progress", "Current university education in computer science."),
-                new EducationDto("Universidad de Alcalá de Henares", "University Specialist Credential in C++ Software", "2023 - 2024", "Completed", "Specialisation focused on C++ software.")
+                new EducationDto("Universidad de Alcalá de Henares", "University Specialist Credential in C++ Software", "2023 - 2024", "Completed", "Specialisation focused on C++ software."),
+                new EducationDto("IES Alonso de Avellaneda", "Higher Vocational Diploma in Cross-Platform Application Development", "2022 - 2024", "Completed", "Higher vocational education focused on cross-platform application development.")
         );
     }
 
@@ -212,7 +217,7 @@ public class PortfolioService {
         return List.of(
                 new ProjectDto("StripePaymentGateway", "Java backend for a business platform with product creation, secure Stripe checkout and Swagger documentation.", "Updated 28 November 2024", List.of("Java", "Stripe", "Swagger UI", "Webhooks", "REST API"), "https://github.com/DanielAntolin/StripePaymentGateway", "Java", 3),
                 new ProjectDto("reactive-gaming-platform-microservices", "Reactive gaming-platform architecture with microservices, JWT, Spring Cloud Gateway, WebFlux, R2DBC and real-time Kafka Streams processing.", "Updated 14 May 2025", List.of("Java", "Spring Cloud Gateway", "Spring Security", "WebFlux", "R2DBC", "PostgreSQL", "Kafka Streams"), "https://github.com/DanielAntolin/reactive-gaming-platform-microservices", "Java", 2),
-                new ProjectDto("DanielAntolin", "Profile repository presenting the core stack and a focus on REST APIs, Android, .NET MAUI and performance-oriented software.", "Updated 10 April 2026", List.of("Markdown", "Java", "Python", ".NET MAUI", "C++", "Assembly"), "https://github.com/DanielAntolin/DanielAntolin", "Markdown", 2)
+                new ProjectDto("Porfolio", "Self-hosted full-stack portfolio built with Angular and Spring Boot, including bilingual content, a verified contact form and deployment through Coolify.", "Updated 25 August 2026", List.of("Angular", "TypeScript", "Spring Boot", "Java", "Docker", "Coolify"), "https://github.com/DanielAntolin/Porfolio", "TypeScript", 0)
         );
     }
 
@@ -223,9 +228,6 @@ public class PortfolioService {
     public ContactDto getContact(String language) {
         if (!isEnglish(language)) return getContact();
         return new ContactDto(
-                "trabajosdanidar12@gmail.com",
-                "+34 660 236 766",
-                "Guadalajara, Spain",
                 List.of(
                         new SocialLinkDto("GitHub", "https://github.com/DanielAntolin", "DanielAntolin"),
                         new SocialLinkDto("LinkedIn", "https://www.linkedin.com/in/dani-antol%C3%ADn-rosales-aa4414295?utm_source=share_via&utm_content=profile&utm_medium=member_android", "Daniel Antolin Rosales")
