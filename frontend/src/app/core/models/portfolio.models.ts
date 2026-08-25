@@ -56,7 +56,12 @@ export interface ContactRequest {
   name: string;
   email: string;
   message: string;
+  verificationToken: string;
   website: string;
+}
+
+export interface EmailVerificationResponse {
+  verificationToken: string;
 }
 
 export interface Portfolio {

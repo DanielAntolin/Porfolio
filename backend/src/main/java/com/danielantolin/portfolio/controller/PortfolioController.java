@@ -2,6 +2,9 @@ package com.danielantolin.portfolio.controller;
 
 import com.danielantolin.portfolio.dto.ContactDto;
 import com.danielantolin.portfolio.dto.ContactRequestDto;
+import com.danielantolin.portfolio.dto.EmailVerificationConfirmDto;
+import com.danielantolin.portfolio.dto.EmailVerificationRequestDto;
+import com.danielantolin.portfolio.dto.EmailVerificationResponseDto;
 import com.danielantolin.portfolio.dto.EducationDto;
 import com.danielantolin.portfolio.dto.ExperienceDto;
 import com.danielantolin.portfolio.dto.LanguageDto;
@@ -11,7 +14,9 @@ import com.danielantolin.portfolio.dto.ProjectDto;
 import com.danielantolin.portfolio.dto.SkillGroupDto;
 import com.danielantolin.portfolio.service.PortfolioService;
 import com.danielantolin.portfolio.service.ContactEmailService;
+import com.danielantolin.portfolio.service.ContactSecurityService;
 import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,10 +33,13 @@ public class PortfolioController {
 
     private final PortfolioService portfolioService;
     private final ContactEmailService contactEmailService;
+    private final ContactSecurityService contactSecurityService;
 
-    public PortfolioController(PortfolioService portfolioService, ContactEmailService contactEmailService) {
+    public PortfolioController(PortfolioService portfolioService, ContactEmailService contactEmailService,
+                               ContactSecurityService contactSecurityService) {
         this.portfolioService = portfolioService;
         this.contactEmailService = contactEmailService;
+        this.contactSecurityService = contactSecurityService;
     }
 
     @GetMapping("/profile")
@@ -70,12 +78,25 @@ public class PortfolioController {
     }
 
     @PostMapping("/contact")
-    public ResponseEntity<Void> sendContact(@Valid @RequestBody ContactRequestDto request) {
+    public ResponseEntity<Void> sendContact(@Valid @RequestBody ContactRequestDto request, HttpServletRequest httpRequest) {
         if (request.website() != null && !request.website().isBlank()) {
             return ResponseEntity.noContent().build();
         }
+        contactSecurityService.authorizeAndConsume(request.email(), request.verificationToken(), httpRequest);
         contactEmailService.send(request);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/contact/verification")
+    public ResponseEntity<Void> requestEmailVerification(@Valid @RequestBody EmailVerificationRequestDto request,
+                                                          HttpServletRequest httpRequest) {
+        contactSecurityService.requestVerification(request, httpRequest);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/contact/verification/confirm")
+    public EmailVerificationResponseDto confirmEmailVerification(@Valid @RequestBody EmailVerificationConfirmDto request) {
+        return contactSecurityService.confirmVerification(request);
     }
 
     @GetMapping("/portfolio")

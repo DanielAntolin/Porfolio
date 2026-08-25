@@ -32,4 +32,13 @@ public class ContactEmailService {
                 + request.message());
         mailSender.send(email);
     }
+
+    public void sendVerificationCode(String recipient, String code) {
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(recipient);
+        email.setFrom(recipientEmail);
+        email.setSubject("Código de verificación · Daniel Antolín");
+        email.setText("Tu código de verificación es: " + code + "\n\nCaduca en 15 minutos.");
+        mailSender.send(email);
+    }
 }

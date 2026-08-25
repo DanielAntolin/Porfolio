@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ContactRequest, Portfolio } from '../models/portfolio.models';
+import { ContactRequest, EmailVerificationResponse, Portfolio } from '../models/portfolio.models';
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioService {
@@ -16,5 +16,13 @@ export class PortfolioService {
 
   sendContact(message: ContactRequest): Observable<void> {
     return this.http.post<void>(`${this.apiBaseUrl}/contact`, message);
+  }
+
+  requestEmailVerification(email: string, website: string): Observable<void> {
+    return this.http.post<void>(`${this.apiBaseUrl}/contact/verification`, { email, website });
+  }
+
+  confirmEmailVerification(email: string, code: string): Observable<EmailVerificationResponse> {
+    return this.http.post<EmailVerificationResponse>(`${this.apiBaseUrl}/contact/verification/confirm`, { email, code });
   }
 }

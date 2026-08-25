@@ -10,7 +10,7 @@
   <div class="section-heading">
     <p>/ contact</p>
     <h2>{{ language() === 'es' ? 'Hablemos' : 'Let’s talk' }}</h2>
-    <span class="contact-intro">{{ language() === 'es' ? 'Envía un mensaje y recibiré tu consulta directamente, sin publicar mis datos personales.' : 'Send a message and I will receive your enquiry directly, without publishing my personal contact details.' }}</span>
+    <span class="contact-intro">{{ language() === 'es' ? 'Envía un mensaje y recibiré tu consulta directamente.' : 'Send a message and I will receive your enquiry directly.' }}</span>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
@@ -29,13 +29,25 @@
       <textarea formControlName="message" rows="6" [placeholder]="language() === 'es' ? 'Cuéntame en qué puedo ayudarte.' : 'Tell me how I can help.'"></textarea>
     </label>
 
+    @if (verificationRequested() && !verified()) {
+      <label class="message-field verification-field">
+        <span>{{ language() === 'es' ? 'Código de verificación' : 'Verification code' }}</span>
+        <input formControlName="code" inputmode="numeric" maxlength="6" [placeholder]="language() === 'es' ? 'Código de 6 dígitos enviado a tu email' : '6-digit code sent to your email'" />
+        <button type="button" (click)="confirmVerification()" [disabled]="sending()">{{ language() === 'es' ? 'Verificar correo' : 'Verify email' }}</button>
+      </label>
+    }
+
+    @if (verified()) {
+      <p class="form-status success">{{ language() === 'es' ? 'Correo verificado. Ya puedes enviar el mensaje.' : 'Email verified. You can now send the message.' }}</p>
+    }
+
     <label class="honeypot" aria-hidden="true">
       <span>Website</span>
       <input formControlName="website" tabindex="-1" autocomplete="off" />
     </label>
 
     <button type="submit" [disabled]="sending()">
-      {{ sending() ? (language() === 'es' ? 'Enviando…' : 'Sending…') : (language() === 'es' ? 'Enviar mensaje' : 'Send message') }}
+      {{ sending() ? (language() === 'es' ? 'Enviando…' : 'Sending…') : (verified() ? (language() === 'es' ? 'Enviar mensaje' : 'Send message') : (language() === 'es' ? 'Enviar código de verificación' : 'Send verification code')) }}
     </button>
 
     @if (sent()) {
