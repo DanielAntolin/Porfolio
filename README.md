@@ -111,7 +111,9 @@ La foto de perfil se sirve como recurso estático y es la misma en ambos idiomas
 
 ### Formulario de contacto
 
-La página solo expone enlaces de GitHub y LinkedIn. El formulario solicita nombre, correo y mensaje, con validación tanto en Angular como en Spring Boot y un campo oculto anti-spam. `ContactEmailService` envía el mensaje en texto plano mediante SMTP y usa el correo del visitante como `Reply-To`.
+La página solo expone enlaces de GitHub y LinkedIn. El formulario solicita nombre, correo y mensaje, con validación tanto en Angular como en Spring Boot y un campo oculto anti-spam. Antes del envío, se manda un código de seis dígitos al correo del visitante: el mensaje solo se acepta tras confirmar ese código, que caduca en 15 minutos y admite cinco intentos.
+
+El backend limita a **dos mensajes al día por correo verificado y por IP**, y también limita las peticiones de códigos. El registro se almacena en una base H2 dentro de un volumen Docker persistente de Coolify, por lo que no se reinicia al redeplegar. `ContactEmailService` envía el mensaje en texto plano mediante SMTP y usa el correo del visitante como `Reply-To`.
 
 La configuración se mantiene fuera del repositorio mediante variables de entorno de ejecución en Coolify:
 
